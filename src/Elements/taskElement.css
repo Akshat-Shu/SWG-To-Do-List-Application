@@ -1,0 +1,84 @@
+.task-element {
+  display: flex;
+  width: 1000px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.add-subtasks {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.checkbox-container {
+  cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+.task-name {
+  flex-grow: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-button {
+  border-color: red;
+  border-width: 200px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-subtasks {
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 3px;
+}
