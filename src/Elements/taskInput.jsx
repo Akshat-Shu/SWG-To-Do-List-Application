@@ -8,7 +8,7 @@ const handleChange = (event) => {
   return (
     <div>
     <div className="main-header">
-    <input type="text" className='taskField' id="formGroupExampleInput" placeholder="Enter Task Title" />
+    <input type="text" className='taskField' id="" placeholder="Enter Task Title" />
 
     <div className='prior-section'>
         <p>Prioties</p>
