@@ -1,11 +1,29 @@
+
+
 .task-element {
   display: flex;
   width: 1000px;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 10px 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mark-completed-checked{
+  background-color: var(--button-color-purple);
+}
+
+.priority-high {
+  background-color: var(--button-color-red-trans);
+}
+
+.priority-low {
+  background-color: var(--button-color-green-trans);
+}
+
+.priority-mid {
+  background-color: var(--button-color-yellow-trans);
 }
 
 .task-content {
@@ -19,14 +37,7 @@
   margin-right: 10px;
 }
 
-.checkbox-container {
-  cursor: pointer;
-  margin-right: 10px;
-  position: relative;
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-}
+
 
 .task-name {
   flex-grow: 1;
@@ -38,8 +49,7 @@
 }
 
 .delete-button {
-  border-color: red;
-  border-width: 200px;
+  background-color: var(--button-color-red);
   color: white;
   border: none;
   padding: 5px 10px;
@@ -55,30 +65,22 @@
   cursor: pointer;
 }
 
+.mark-completed-checkbox{
+  padding: 5px 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  border: 2px solid var(--secondary-background);
+  width: 30px;
+  height: 30px;
+  align-content: center;
+}
+
 .edit-button {
-  background-color: blue;
+  background-color: var(--button-color-purple);
   color: white;
   border: none;
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
-}
-
-.edit-button {
-  background-color: blue;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 3px;
 }

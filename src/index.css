@@ -11,6 +11,24 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-background: #2c2f33;
+  --secondary-background: #23272a;
+  --button-color-purple: #7289da;
+  --color-light-purple: #99aab5;
+  --button-color-red: #e03f4f;
+  --button-color-green: #98fb98;
+  --button-color-yellow: #fecc57;
+
+  --button-color-red-trans: rgba(224, 63, 79, 0.3);
+  --button-color-green-trans: rgba(152, 251, 152, 0.3);
+  --button-color-yellow-trans: rgba(254, 204, 87, 0.3);
+
+
+
+  
+
+
 }
 
 a {
