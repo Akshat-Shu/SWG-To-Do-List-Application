@@ -6,11 +6,12 @@ const taskPrioties = Object.freeze({
 })
 
 class taskDescription {
-  constructor(taskName, taskPriority, taskStart, taskEnd) {
+  constructor(taskName, taskPriority, taskStart, taskEnd, subtasks) {
     this.taskName = taskName;
     this.taskPriority = taskPriority
     this.taskStart = taskStart ? null : taskStart
     this.taskEnd = taskEnd ? null : taskEnd
+    this.subtasks = subtasks ? subtasks : []
   }
 }
 

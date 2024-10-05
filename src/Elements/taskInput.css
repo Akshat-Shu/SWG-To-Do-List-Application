@@ -1,19 +1,48 @@
 .main-header{
-    width: 1000px;
+    width: 800px;
     display: flex;
     justify-content: space-around;
     font-size: 18px;
+    margin: 10px auto;
 }
 
+
 .taskField{
-  font-size: 18px;
-  width: 400px;
-  max-height: 40px;
-    margin: 15px;
+    font-size: 18px;
+    width: 400px;
+    max-height: 40px;
+    margin: 10px 0px 10px 0px;
     padding: 5px;
     border-radius: 6px;
     border: 0px;
 }
+
+.close-btn {
+    background-color: var(--button-color-red);
+    color: white;
+    padding: 8px 16px;
+    max-height: 40px;
+    border-radius: 6px;
+    border: 0px;
+    margin: 8px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 1s ease-in-out;
+}
+
 
 .add-task-wrapper {
     background-color: var(--secondary-background);
@@ -25,7 +54,6 @@
 .prior-section{
     display: flex;
     padding: 20px 0px 0px 0px;
-    
 }
 .prior-section p{
     margin-top: 25px;
@@ -38,15 +66,15 @@
 .dropdown select{
     font-size: 18px;
     height: 40px;
-    padding: 12px;
-    font-size: 10px;
+    padding: 10px;
     border-radius: 6px;
-    border: 0px;
+    border: none !important;
+    outline: none !important;
 }
 
 .add-btn{
     margin: 20px;
     padding: 8px 16px;
     max-height: 40px;
-    background-color:#646cff ;
+    background-color:var(--button-color-purple);
 }
