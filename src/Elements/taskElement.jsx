@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './taskElement.css';
+import TaskInput from './taskInput'
+
 
 const setToggle = () => {
   console.log("Toggled")
@@ -8,6 +10,7 @@ const setToggle = () => {
 const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, subTasks }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const toggleCheckBox = () => {
     setIsChecked(prevState => !prevState);
@@ -27,6 +30,10 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, 
       return newState;
     });
   };
+
+  const handleEdit = () =>{
+    setIsEditModalOpen(!isEditModalOpen);
+  }
   return (
     <div className={`task-element ${priority}`}>
       <div className="task-container"></div>
@@ -41,7 +48,8 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, 
           </div>
           <div className="button-group">
             <button className="delete-button" onClick={onDelete}>Delete</button>
-            <button className="edit-button" onClick={onEdit}>Edit</button>
+            <button className="edit-button" onClick={handleEdit}>Edit</button>
+            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskTitle={taskDescription.taskName}></TaskInput> : null}
           </div>
         </div>
         <div className="subtask-container">
