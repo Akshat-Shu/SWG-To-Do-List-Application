@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './taskInput.css';
+import { taskDescription } from '../Structures/taskDescription';
 
-function TaskInput({ isOpen, toggleModal, taskTitle }) {
-  const [selectedValue, setSelectedValue] = useState('0'); 
+function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, taskIndex }) {
+  const [selectedValue, setSelectedValue] = useState(taskDesc?taskDesc.taskPriority:'0'); 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
-  const[inputValue, setInputValue] =useState(taskTitle);
+  const[inputValue, setInputValue] =useState(taskDesc?taskDesc.taskName:'');
   const handleInputChange = (value) =>{
     setInputValue(value);
   }
@@ -19,7 +20,11 @@ function TaskInput({ isOpen, toggleModal, taskTitle }) {
     toggleModal();
     setInputValue("");
     console.log([inputValue, selectedValue]);
-    
+    if(!taskDesc){
+      addTask(new taskDescription(inputValue, selectedValue, null, null, []));
+    } else {
+      editTask(new taskDescription(inputValue, selectedValue, null, null, taskDesc.subtasks));
+    }
   }
 
   return (
@@ -41,7 +46,7 @@ function TaskInput({ isOpen, toggleModal, taskTitle }) {
                 </div>
               </div>
             <button className='add-btn' type='submit'>
-              {taskTitle == "" ? 'Add' : 'Edit'}
+              {!taskDesc ? 'Add' : 'Edit'}
             </button>
           </div>
         </form>

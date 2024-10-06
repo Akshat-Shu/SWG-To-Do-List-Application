@@ -5,7 +5,7 @@ import TaskInput from './Elements/taskInput'
 import { useState } from 'react'
 
 function App() {
-  const tasks = [
+  const [tasks, setTasks] = useState([
     new taskDescription("Something generic", 1, null , null, ["Helo world", "Hello world 2"]),
     new taskDescription(
       "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out. I also wonder where happens if I go over two lines and go into the thee lines zone",
@@ -14,8 +14,18 @@ function App() {
         "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out"
       ]
     )
-  ]
+  ])
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const addTask = (task) => {
+    setTasks([...tasks, task]);
+  };
+
+  const editTask = (task, index) => {
+    const newTasks = [...tasks];
+    newTasks[index] = task;
+    setTasks(newTasks);
+  }
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -26,7 +36,7 @@ function App() {
     //TODO: fix modal-content not appearing as specified in taskInput.jsx
     <>
       <button onClick={toggleModal}>Add Task</button>
-      {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} taskTitle={""}></TaskInput> : null}
+      {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} ></TaskInput> : null}
       <div>
         {tasks.map((task, index) => (
           <TaskElement 
@@ -34,9 +44,10 @@ function App() {
             taskDescription={task} 
             subTasks={task.subtasks}
             onDelete={() => console.log("Deleted")} 
-            // onEdit={() => console.log("Edited")} 
+            onEdit={(tsk) => editTask(tsk, index)} 
             addSubtask={() => console.log("Add Subtask")} 
             priority={priorityEnum[task.taskPriority]}
+            taskObject={task}
           />
         ))}
       </div>

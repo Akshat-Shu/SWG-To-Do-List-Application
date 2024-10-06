@@ -7,7 +7,7 @@ const setToggle = () => {
   console.log("Toggled")
 }
 
-const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, subTasks }) => {
+const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, subTasks, key }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -49,7 +49,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, 
           <div className="button-group">
             <button className="delete-button" onClick={onDelete}>Delete</button>
             <button className="edit-button" onClick={handleEdit}>Edit</button>
-            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskTitle={taskDescription.taskName}></TaskInput> : null}
+            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} taskIndex={key} editTask={onEdit}></TaskInput> : null}
           </div>
         </div>
         <div className="subtask-container">
@@ -67,14 +67,6 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, 
             </div>
           ))}
         </div>
-      {/* </div> */}
-      {/* <div className="subtask-container">
-        {subTasks && subTasks.map((subtask, index) => (
-          <div className="subtask" key={index}>
-            <button className="subtask-checkbox" onClick={setToggle}>{subtask.taskName}</button>
-          </div>
-        ))}
-      </div> */}
     </div>
   )
 
