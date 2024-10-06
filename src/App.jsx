@@ -1,5 +1,5 @@
 import './App.css'
-import taskDescription from './Structures/taskDescription'
+import { taskDescription, priorityEnum } from './Structures/taskDescription'
 import TaskElement from './Elements/taskElement'
 import TaskInput from './Elements/taskInput'
 import { useState } from 'react'
@@ -7,6 +7,13 @@ import { useState } from 'react'
 function App() {
   const tasks = [
     new taskDescription("Something generic", 1, null , null, ["Helo world", "Hello world 2"]),
+    new taskDescription(
+      "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out. I also wonder where happens if I go over two lines and go into the thee lines zone",
+      2, null, null, [
+        "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out", 
+        "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out"
+      ]
+    )
   ]
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,7 +36,7 @@ function App() {
             onDelete={() => console.log("Deleted")} 
             onEdit={() => console.log("Edited")} 
             addSubtask={() => console.log("Add Subtask")} 
-            priority={'priority-high'}
+            priority={priorityEnum[task.taskPriority]}
           />
         ))}
       </div>
