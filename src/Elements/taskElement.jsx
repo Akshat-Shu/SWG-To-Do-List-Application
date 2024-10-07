@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './taskElement.css';
 import TaskInput from './taskInput'
+import ModalSubtask from './modalSubtask';
 
 
 const setToggle = () => {
@@ -13,6 +14,7 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [subTasks, setSubTasks] = useState(subtasks);
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
+  const[subtaskModal, setSubtaskModal] = useState(false);
 
   const addSubtask = (newTask) => {
     const newTasks = [...subTasks];
@@ -40,6 +42,13 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
     });
   };
 
+  const handlesubtaskModal = () =>{
+    setSubtaskModal(!subtaskModal)
+    // const newTasks = [...subTasks];
+    // newTasks.push(newTask);
+    // setSubTasks(newTasks);
+  }
+
   const handleEdit = () =>{
     setIsEditModalOpen(!isEditModalOpen);
   }
@@ -48,7 +57,8 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
       <div className="task-container"></div>
         <div className="first-line-wrapper">
           <div className="task-content">
-            <button className="add-subtasks" onClick={addSubtask}>+</button>
+            <button className="add-subtasks" onClick={handlesubtaskModal}>+</button>
+            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal}/> : null}
             <div className="checkbox-container">
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
               >{isChecked?<img src='/assets/check-mark.png'/>:null}</button>
