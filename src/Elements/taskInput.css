@@ -63,6 +63,23 @@
     margin: 20px;
     padding-bottom: 30px;
 }
+
+.time-picker-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+  
+.time-picker {
+    display: flex;
+    flex-direction: row;
+}
+
+.time-picker label {
+    margin: 5px;
+}
+
+
 .dropdown select{
     font-size: 18px;
     height: 40px;

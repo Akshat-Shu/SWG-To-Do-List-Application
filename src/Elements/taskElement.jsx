@@ -7,10 +7,19 @@ const setToggle = () => {
   console.log("Toggled")
 }
 
-const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, subTasks, key }) => {
+const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtasks }) => {
   const [isChecked, setIsChecked] = useState(false);
-  const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
+  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [subTasks, setSubTasks] = useState(subtasks);
+  const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
+
+  const addSubtask = (newTask) => {
+    const newTasks = [...subTasks];
+    newTasks.push(newTask);
+    setSubTasks(newTasks);
+  }
+
 
   const toggleCheckBox = () => {
     setIsChecked(prevState => !prevState);
@@ -49,7 +58,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, 
           <div className="button-group">
             <button className="delete-button" onClick={onDelete}>Delete</button>
             <button className="edit-button" onClick={handleEdit}>Edit</button>
-            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} taskIndex={key} editTask={onEdit}></TaskInput> : null}
+            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} editTask={onEdit}></TaskInput> : null}
           </div>
         </div>
         <div className="subtask-container">
@@ -66,7 +75,9 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, addSubtask, priority, 
               <div className={`task-name ${subtaskChecked[index]?'dashed-task-name':''}`}>{subTasks[index]}</div>
             </div>
           ))}
+
         </div>
+
     </div>
   )
 

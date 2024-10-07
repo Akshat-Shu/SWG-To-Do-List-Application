@@ -1,8 +1,9 @@
 import './App.css'
 import { taskDescription, priorityEnum } from './Structures/taskDescription'
-import TaskElement from './Elements/taskElement'
+
 import TaskInput from './Elements/taskInput'
 import { useState } from 'react'
+import TaskDisplay from './Elements/taskDisplay'
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -30,7 +31,6 @@ function App() {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-  console.log(tasks[0])
   return (
     // TODO: make the App.jsx page look cleaner, 
     //TODO: fix modal-content not appearing as specified in taskInput.jsx
@@ -38,18 +38,8 @@ function App() {
       <button onClick={toggleModal}>Add Task</button>
       {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} ></TaskInput> : null}
       <div>
-        {tasks.map((task, index) => (
-          <TaskElement 
-            key={index}
-            taskDescription={task} 
-            subTasks={task.subtasks}
-            onDelete={() => console.log("Deleted")} 
-            onEdit={(tsk) => editTask(tsk, index)} 
-            addSubtask={() => console.log("Add Subtask")} 
-            priority={priorityEnum[task.taskPriority]}
-            taskObject={task}
-          />
-        ))}
+
+      <TaskDisplay tasks={tasks} editTask={editTask}></TaskDisplay>
       </div>
     </>
   )

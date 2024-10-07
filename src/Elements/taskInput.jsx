@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './taskInput.css';
 import { taskDescription } from '../Structures/taskDescription';
 
-function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, taskIndex }) {
+function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask }) {
   const [selectedValue, setSelectedValue] = useState(taskDesc?taskDesc.taskPriority:'0'); 
+  const [startTime, setStartTime] = useState(taskDesc?taskDesc.taskStart:'');
+  const [endTime, setEndTime] = useState(taskDesc?taskDesc.taskEnd:'');
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -21,9 +23,9 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, taskIndex
     setInputValue("");
     console.log([inputValue, selectedValue]);
     if(!taskDesc){
-      addTask(new taskDescription(inputValue, selectedValue, null, null, []));
+      addTask(new taskDescription(inputValue, selectedValue, startTime, endTime, []));
     } else {
-      editTask(new taskDescription(inputValue, selectedValue, null, null, taskDesc.subtasks));
+      editTask(new taskDescription(inputValue, selectedValue, startTime, endTime, taskDesc.subtasks));
     }
   }
 
@@ -32,23 +34,44 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, taskIndex
       <div className='add-task-wrapper'>
         <form onSubmit={handleFormSubmit}>
           <div className="main-header">
-              <div className="task-priority-container">
-                <input type="text" className='taskField' placeholder="Enter Task Title" autoComplete='off' value={inputValue} onChange={(event)=>handleInputChange(event.target.value)}/>
-                <div className='prior-section'>
-                  <p>Priority: </p>
-                  <div className="dropdown">
-                    <select value={selectedValue} onChange={handleChange}>
-                      <option value="0">High</option>
-                      <option value="1">Intermediate</option>
-                      <option value="2">Low</option>
-                    </select>
-                  </div>
+            <div className="task-priority-container">
+              <input type="text" className='taskField' placeholder="Enter Task Title" autoComplete='off' value={inputValue} onChange={(event)=>handleInputChange(event.target.value)}/>
+              <div className='prior-section'>
+                <p>Priority: </p>
+                <div className="dropdown">
+                  <select value={selectedValue} onChange={handleChange}>
+                    <option value="0">High</option>
+                    <option value="1">Intermediate</option>
+                    <option value="2">Low</option>
+                  </select>
                 </div>
               </div>
+              <div className="time-picker-container">
+                <div className="time-picker">
+                  <label>Start Time:</label>
+                  <input
+                    type="datetime-local"
+                    value={startTime}
+                    onChange={(event) => setStartTime(event.target.value)}
+                  /> 
+                  {/* Very basic time picker, maybe use react-time-picker later on */}
+                </div>
+                <div className="time-picker">
+                  <label>End Time:</label>
+                  <input
+                    type="datetime-local"
+                    value={endTime}
+                    onChange={(event) => setEndTime(event.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
             <button className='add-btn' type='submit'>
               {!taskDesc ? 'Add' : 'Edit'}
             </button>
           </div>
+          
         </form>
         <button onClick={toggleModal} className='close-btn'>Close</button>
       </div>
