@@ -4,6 +4,8 @@ import { taskDescription, priorityEnum } from './Structures/taskDescription'
 import TaskInput from './Elements/taskInput'
 import { useState } from 'react'
 import TaskDisplay from './Elements/taskDisplay'
+import InfoBox from './Elements/informationBox'
+
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -16,6 +18,18 @@ function App() {
       ]
     )
   ])
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [infoMessage, setInfoMessage] = useState("");
+
+  const showInfo = (message) => {
+    setInfoMessage(message)
+    setIsInfoVisible(true);
+  };
+
+  const hideInfo = () => {
+    setIsInfoVisible(false);
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addTask = (task) => {
@@ -36,13 +50,18 @@ function App() {
     //TODO: fix modal-content not appearing as specified in taskInput.jsx
     <>
       <button onClick={toggleModal}>Add Task</button>
-      {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} ></TaskInput> : null}
+      {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} showInfo={showInfo}></TaskInput> : null}
       <div>
 
-      <TaskDisplay tasks={tasks} editTask={editTask}></TaskDisplay>
+      <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo}></TaskDisplay>
+      <InfoBox
+        message={infoMessage}
+        isVisible={isInfoVisible}
+        onClose={hideInfo}
+      />
       </div>
     </>
   )
 }
 
-export default App
+export { App }

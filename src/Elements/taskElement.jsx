@@ -8,7 +8,7 @@ const setToggle = () => {
   console.log("Toggled")
 }
 
-const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtasks }) => {
+const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtasks, showInfo }) => {
   const [isChecked, setIsChecked] = useState(false);
   
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -58,7 +58,7 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
         <div className="first-line-wrapper">
           <div className="task-content">
             <button className="add-subtasks" onClick={handlesubtaskModal}>+</button>
-            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal}/> : null}
+            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtask}/> : null}
             <div className="checkbox-container">
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
               >{isChecked?<img src='/assets/check-mark.png'/>:null}</button>

@@ -11,13 +11,14 @@
 }
 
 .modal-box{
-    background-color: white;
+    background-color: var(--secondary-background);
     height: fit-content;
-    width: 1000px;
+    width: 600px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 150px;
+    padding: 10px;
     border-radius: 10px;
 }
 
@@ -35,7 +36,9 @@
 .subtask-modal input{
     margin: 8px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 6px;
+    border: 0px;
+    font-size: 18px;
     width: 500px;
 }
 

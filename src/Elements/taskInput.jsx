@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './taskInput.css';
 import { taskDescription } from '../Structures/taskDescription';
 
-function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask }) {
+function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo }) {
   const [selectedValue, setSelectedValue] = useState(taskDesc?taskDesc.taskPriority:'0'); 
   const [startTime, setStartTime] = useState(taskDesc?taskDesc.taskStart:'');
   const [endTime, setEndTime] = useState(taskDesc?taskDesc.taskEnd:'');
@@ -17,9 +17,13 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask }) {
 
   const handleFormSubmit =(event)=>{
     event.preventDefault();
-
-    if(!inputValue) return;
     toggleModal();
+    
+    if(!inputValue) {
+      showInfo("Please enter a task title");
+      return;
+    }
+    
     setInputValue("");
     console.log([inputValue, selectedValue]);
     if(!taskDesc){
