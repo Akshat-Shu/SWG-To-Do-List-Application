@@ -12,11 +12,13 @@ const priorityEnum = Object.freeze({
 })
 
 class taskDescription {
-  constructor(taskName, taskPriority, taskStart, taskEnd, subtasks) {
+  constructor(taskName, taskPriority, startTime, endTime, subtasks) {
     this.taskName = taskName;
     this.taskPriority = taskPriority
-    this.taskStart = taskStart ? null : taskStart
-    this.taskEnd = taskEnd ? null : taskEnd
+    // this.taskStart = taskStart ? null : taskStart
+    // this.taskEnd = taskEnd ? null : taskEnd
+    this.startTime = startTime;
+    this.endTime =  endTime;
     this.subtasks = subtasks ? subtasks : []
   }
 }

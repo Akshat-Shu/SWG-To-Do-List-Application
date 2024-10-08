@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import  './modalSubtask.css';
 
-function ModalSubtask({toggleModal, addSubtask}) {
+function ModalSubtask({toggleModal, addSubtask, showInfo}) {
     const[inputFields, setInputFields] = useState([{id:1}])
     const handlleAdd = () =>{
         const newField = {id : inputFields.length + 1};
@@ -21,8 +21,14 @@ function ModalSubtask({toggleModal, addSubtask}) {
         const validSubtasks = subtasks.filter(subtask => subtask);
         if (validSubtasks.length > 0) {
             addSubtask(validSubtasks);
-        }
+        }        
         toggleModal();
+        
+        if(!inputFields[0].value) {
+            showInfo("Please enter a SubTask title");
+            return;
+          }
+        
     }
 
   return (

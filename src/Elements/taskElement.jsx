@@ -4,13 +4,10 @@ import TaskInput from './taskInput'
 import ModalSubtask from './modalSubtask';
 
 
-const setToggle = () => {
-  console.log("Toggled")
-}
 
-const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtasks, showInfo }) => {
+const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtasks, showInfo}) => {
   const [isChecked, setIsChecked] = useState(false);
-  
+  // const [status, setstatus] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [subTasks, setSubTasks] = useState(subtasks);
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
@@ -56,7 +53,7 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
         <div className="first-line-wrapper">
           <div className="task-content">
             <button className="add-subtasks" onClick={handlesubtaskModal}>+</button>
-            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtasks}/> : null}
+            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtasks} showInfo={showInfo}/> : null}
             <div className="checkbox-container">
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
               >{isChecked?<img src='/assets/check-mark.png'/>:null}</button>

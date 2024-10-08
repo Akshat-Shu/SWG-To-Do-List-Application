@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './taskInput.css';
 import { taskDescription } from '../Structures/taskDescription';
 
 function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo }) {
   const [selectedValue, setSelectedValue] = useState(taskDesc?taskDesc.taskPriority:'0'); 
-  const [startTime, setStartTime] = useState(taskDesc?taskDesc.taskStart:'');
-  const [endTime, setEndTime] = useState(taskDesc?taskDesc.taskEnd:'');
+  const [startTime, setStartTime] = useState(taskDesc?taskDesc.startTime:'');
+  const [endTime, setEndTime] = useState(taskDesc?taskDesc.endTime:'');
+  const[status, setStatus] =useState("")
+
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -14,6 +16,25 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
   const handleInputChange = (value) =>{
     setInputValue(value);
   }
+
+  //Tried a lot but not able to display Status on taskElement... 
+  const checkStatus = () => {
+    const currentTime = new Date();
+    const startDateObj = new Date(startTime);
+    const endDateObj = new Date(endTime);
+
+    if (currentTime >= startDateObj && currentTime <= endDateObj) {
+      setStatus('Ongoing');
+    } else if (currentTime < startDateObj) {
+      setStatus('Not Started');
+    } else {
+      setStatus('Completed');
+    }
+  };
+  useEffect(() => {
+    checkStatus();
+  }, [startTime, endTime]);
+
 
   const handleFormSubmit =(event)=>{
     event.preventDefault();
@@ -69,6 +90,7 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
                   />
                 </div>
               </div>
+              Status : {status}
             </div>
 
             <button className='add-btn' type='submit'>
@@ -82,6 +104,4 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
     </div>
   );
 }
-
-export default TaskInput;
-
+export default TaskInput ;
