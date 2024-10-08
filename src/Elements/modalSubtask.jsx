@@ -18,12 +18,9 @@ function ModalSubtask({toggleModal, addSubtask}) {
     }
     const handleDone = () =>{
         const subtasks = inputFields.map((field) => field.value)
-        console.log(subtasks);
-        addSubtask(subtasks[0]);
-        for (let i = 0; i < subtasks.length; i++) {
-            if(subtasks[i]){
-                addSubtask(subtasks[i]);
-            }
+        const validSubtasks = subtasks.filter(subtask => subtask);
+        if (validSubtasks.length > 0) {
+            addSubtask(validSubtasks);
         }
         toggleModal();
     }

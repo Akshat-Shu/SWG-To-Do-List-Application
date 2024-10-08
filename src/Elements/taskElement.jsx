@@ -16,10 +16,8 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
   const[subtaskModal, setSubtaskModal] = useState(false);
 
-  const addSubtask = (newTask) => {
-    const newTasks = [...subTasks];
-    newTasks.push(newTask);
-    setSubTasks(newTasks);
+  const addSubtasks = (newTasks) => {
+    setSubTasks([...subTasks, ...newTasks]);
   }
 
 
@@ -58,7 +56,7 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
         <div className="first-line-wrapper">
           <div className="task-content">
             <button className="add-subtasks" onClick={handlesubtaskModal}>+</button>
-            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtask}/> : null}
+            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtasks}/> : null}
             <div className="checkbox-container">
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
               >{isChecked?<img src='/assets/check-mark.png'/>:null}</button>
