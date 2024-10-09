@@ -41,9 +41,33 @@
     font-size: 18px;
     width: 500px;
 }
+.subtask-modal img{
+    width: 15px;
+    margin-left: 10px;
+}
+
+.cross-btn{
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0px 15px 0px 5px;
+    margin: 5px 0px 5px 0px;
+    border: none;
+    
+}
 
 .done-btn{
     position: relative;
     background-color: rgb(182, 8, 8);
-    margin-bottom: 8px;
+    padding: 8px 15px 8px 15px;
+    margin-top: 10px;
+}
+
+/* .btn-grp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0px 8px 0px;
+} */
+
+.input-field{
+    display: flex;
 }

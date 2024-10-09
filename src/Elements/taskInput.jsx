@@ -51,6 +51,9 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
           <div className="main-header">
             <div className="task-priority-container">
               <input type="text" className='taskField' placeholder="Enter Task Title" autoComplete='off' value={inputValue} onChange={(event)=>handleInputChange(event.target.value)}/>
+              <button className='add-btn' type='submit'>
+              {!taskDesc ? 'Add' : 'Edit'}
+            </button>
               <div className='prior-section'>
                 <p>Priority: </p>
                 <div className="dropdown">
@@ -82,9 +85,7 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
               </div>
             </div>
 
-            <button className='add-btn' type='submit'>
-              {!taskDesc ? 'Add' : 'Edit'}
-            </button>
+            
           </div>
           
         </form>

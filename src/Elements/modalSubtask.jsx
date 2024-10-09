@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import  './modalSubtask.css';
 
 function ModalSubtask({toggleModal, addSubtask, showInfo}) {
     const[inputFields, setInputFields] = useState([{id:1}])
-    const handlleAdd = () =>{
-        const newField = {id : inputFields.length + 1};
-        setInputFields([...inputFields, newField])
-    }
+    // const handleAdd = () =>{
+    //     const newField = {id : inputFields.length + 1};
+    //     setInputFields([...inputFields, newField])
+    // }
+    const handleRemoveInput = (id) => {
+        setInputFields(inputFields.filter((input) => (input.id) !== id));
+        if (inputFields.length === 1) {
+            toggleModal();;
+           }
+    };
+
+    // useEffect(() => {
+    //     if (inputFields.length === 1) {
+    //      toggleModal();;
+    //     }
+    //   }, []);
+
     const handleChange = (id, value) =>{
         const updateFields =inputFields.map((field)=>{
             if (field.id == id){
@@ -37,14 +50,16 @@ function ModalSubtask({toggleModal, addSubtask, showInfo}) {
             <div className="top-area
             ">
                 {inputFields.map((field) => (
-                    <span key={field.id}><input type="text" placeholder='Add Subtask' onChange={(e)=> handleChange(field.id, e.target.value)} /></span>
+                    <span key={field.id} className='input-field'><input type="text" placeholder='Add Subtask' onChange={(e)=> handleChange(field.id, e.target.value)} />
+                    <button className='cross-btn' onClick={() => handleRemoveInput(field.id)}><img src="/assets/cross.webp" alt="" /></button>
+                    
+                    </span>
                 ))}
-                <span>
-                    <button className='addmore-btn' onClick={handlleAdd}>Add more</button>
-                </span>
-                <span>
+                <span className='btn-grp'>
+                    {/* <button className='addmore-btn' onClick={handleAdd}>Add another Subtask</button> */}
                     <button className='done-btn' onClick={handleDone}>Done</button>
                 </span>
+
             </div>
             
             

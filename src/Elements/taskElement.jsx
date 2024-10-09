@@ -15,9 +15,13 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
   const addSubtasks = (newTasks) => {
     setSubTasks([...subTasks, ...newTasks]);
   }
+  const removes = (index) => {
+    const updatedSubTasks = subTasks.filter((i) => i !== index);
+    setSubTasks(updatedSubTasks);
+  };
+  
 
-
-  const toggleCheckBox = () => {
+  function toggleCheckBox() {
     setIsChecked(prevState => !prevState);
     for (let i = 0; i < subtaskChecked.length; i++) {
       setSubtaskChecked(prevState => {
@@ -26,7 +30,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
         return newState;
       });
     }
-  };
+  }
 
   const toggleSubtaskCheckBox = (index, value) => {
     setSubtaskChecked(prevState => {
@@ -68,6 +72,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
         <div className="subtask-container">
           {subTasks && subTasks.map((subtask, index) => (
             <div className="subtask" key={index}>
+              <div className="subtask-1">
               <img src='/assets/subtask-enter-key.png' className="subtask-enter"/>
               <div className="checkbox-container">
                 <button className={`mark-completed-checkbox ${subtaskChecked[index] ? 'mark-completed-checked' : ''}`} onClick={() => {
@@ -76,6 +81,11 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
                 >{subtaskChecked[index]?<img src='/assets/check-mark.png'/>:null}</button>
               </div>
               <div className={`task-name ${subtaskChecked[index]?'dashed-task-name':''}`}>{subTasks[index]}</div>
+              </div>
+              <button className='remove-btn' onClick={()=>removes(subTasks[index])}>
+                <img src='/assets/cross.webp' className='cross-icon' />
+              </button>
+              
             </div>
           ))}
 

@@ -9,10 +9,10 @@
 
 .taskField{
     font-size: 18px;
-    width: 400px;
+    width: 500px;
     max-height: 40px;
     margin: 10px 0px 10px 0px;
-    padding: 5px;
+    padding: 7px;
     border-radius: 6px;
     border: 0px;
 }
@@ -53,7 +53,7 @@
 
 .prior-section{
     display: flex;
-    padding: 20px 0px 0px 0px;
+    /* padding: 20px 0px 0px 0px; */
 }
 .prior-section p{
     margin-top: 25px;
@@ -67,7 +67,7 @@
 .time-picker-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 0px 0px 10px 0px;
 }
   
 .time-picker {
@@ -91,7 +91,7 @@
 
 .add-btn{
     margin: 20px;
-    padding: 8px 16px;
-    max-height: 40px;
+    padding: 4px 16px;
+    /* max-height: 30px; */
     background-color:var(--button-color-purple);
 }
