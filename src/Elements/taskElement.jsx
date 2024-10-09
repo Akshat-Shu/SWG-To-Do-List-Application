@@ -14,6 +14,9 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
 
   const addSubtasks = (newTasks) => {
     setSubTasks([...subTasks, ...newTasks]);
+    setSubtaskChecked([...subtaskChecked, ...newTasks.map(() => isChecked)]);
+    taskDescription.subtasks = subTasks;
+    onEdit(taskDescription);
   }
 
 

@@ -3,7 +3,7 @@ import TaskElement from "./taskElement";
 
 
 
-function TaskDisplay({ tasks, editTask,showInfo}) {
+function TaskDisplay({ tasks, editTask, showInfo}) {
 
   let separatedTasks = [[], [], []];
   
@@ -17,7 +17,7 @@ function TaskDisplay({ tasks, editTask,showInfo}) {
         onDelete={() => console.log("Deleted")} 
         onEdit={(tsk) => editTask(tsk, i)} 
         priority={priorityEnum[task.taskPriority]}
-        
+        showInfo={showInfo}
       />
     )
   }
