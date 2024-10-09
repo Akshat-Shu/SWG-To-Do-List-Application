@@ -53,7 +53,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
         <div className="first-line-wrapper">
           <div className="task-content">
             <button className="add-subtasks" onClick={handlesubtaskModal}>+</button>
-            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtasks}/> : null}
+            { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtasks} showInfo={showInfo}/> : null}
             <div className="checkbox-container">
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
               >{isChecked?<img src='/assets/check-mark.png'/>:null}</button>
@@ -85,7 +85,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
           taskDescription.taskTime ? (
             <div className='task-time-container'>
               <div>Status: </div>
-              <span></span>
+              
               <TaskTime taskTime={taskDescription.taskTime}></TaskTime>
             </div>
           ):null
