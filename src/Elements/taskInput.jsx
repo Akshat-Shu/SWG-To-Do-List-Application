@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './taskInput.css';
 import { taskDescription } from '../Structures/taskDescription';
 import taskTime from '../Structures/taskTime/taskTime.js';
@@ -22,6 +22,25 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
   const handleInputChange = (value) =>{
     setInputValue(value);
   }
+
+  //Tried a lot but not able to display Status on taskElement... 
+  const checkStatus = () => {
+    const currentTime = new Date();
+    const startDateObj = new Date(startTime);
+    const endDateObj = new Date(endTime);
+
+    if (currentTime >= startDateObj && currentTime <= endDateObj) {
+      setStatus('Ongoing');
+    } else if (currentTime < startDateObj) {
+      setStatus('Not Started');
+    } else {
+      setStatus('Completed');
+    }
+  };
+  useEffect(() => {
+    checkStatus();
+  }, [startTime, endTime]);
+
 
   const handleFormSubmit =(event)=>{
     event.preventDefault();
@@ -79,6 +98,7 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
                   />
                 </div>
               </div>
+              Status : {status}
             </div>
 
             <button className='add-btn' type='submit'>
@@ -92,6 +112,4 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
     </div>
   );
 }
-
-export default TaskInput;
-
+export default TaskInput ;

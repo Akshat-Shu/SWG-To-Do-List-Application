@@ -3,8 +3,10 @@ import TaskElement from "./taskElement";
 
 
 
-function TaskDisplay({ tasks, editTask }) {
+function TaskDisplay({ tasks, editTask,showInfo}) {
+
   let separatedTasks = [[], [], []];
+  
   for (let i = 0; i < tasks.length; i++) {
     let task = tasks[i]
     separatedTasks[task.taskPriority].push(

@@ -25,6 +25,12 @@ function ModalSubtask({toggleModal, addSubtask, showInfo}) {
             showInfo("Please enter a subtask");
         }
         toggleModal();
+        
+        if(!inputFields[0].value) {
+            showInfo("Please enter a SubTask title");
+            return;
+          }
+        
     }
 
   return (

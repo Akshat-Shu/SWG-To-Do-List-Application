@@ -1,6 +1,5 @@
 import './App.css'
 import { taskDescription, priorityEnum } from './Structures/taskDescription'
-
 import TaskInput from './Elements/taskInput'
 import { useState } from 'react'
 import TaskDisplay from './Elements/taskDisplay'

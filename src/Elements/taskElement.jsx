@@ -7,7 +7,6 @@ import TaskTime from '../Structures/taskTime/taskTime.jsx';
 
 const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, showInfo }) => {
   const [isChecked, setIsChecked] = useState(false);
-  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [subTasks, setSubTasks] = useState(subtasks);
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
