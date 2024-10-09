@@ -1,0 +1,15 @@
+.in-progress-task {
+  color: var(--button-color-yellow);
+}
+
+.completed-task {
+  color: var(--button-color-green);
+}
+
+.not-started-task {
+  color: var(--button-color-purple);
+}
+
+.due-task {
+  color: var(--button-color-red);
+}

@@ -9,10 +9,10 @@ import InfoBox from './Elements/informationBox'
 
 function App() {
   const [tasks, setTasks] = useState([
-    new taskDescription("Something generic", 1, null , null, ["Helo world", "Hello world 2"]),
+    new taskDescription("Something generic", 1, null, ["Helo world", "Hello world 2"]),
     new taskDescription(
       "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out. I also wonder where happens if I go over two lines and go into the thee lines zone",
-      2, null, null, [
+      2, null, [
         "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out", 
         "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out"
       ]

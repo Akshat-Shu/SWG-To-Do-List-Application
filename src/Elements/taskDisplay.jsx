@@ -14,9 +14,8 @@ function TaskDisplay({ tasks, editTask }) {
         subtasks={task.subtasks}
         onDelete={() => console.log("Deleted")} 
         onEdit={(tsk) => editTask(tsk, i)} 
-        addSubtask={() => console.log("Add Subtask")} 
         priority={priorityEnum[task.taskPriority]}
-        taskObject={task}
+        
       />
     )
   }

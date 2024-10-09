@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 import './taskElement.css';
 import TaskInput from './taskInput'
 import ModalSubtask from './modalSubtask';
+import TaskTime from '../Structures/taskTime/taskTime.jsx';
 
 
-const setToggle = () => {
-  console.log("Toggled")
-}
-
-const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtasks, showInfo }) => {
+const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, showInfo }) => {
   const [isChecked, setIsChecked] = useState(false);
   
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [subTasks, setSubTasks] = useState(subtasks);
   const [subtaskChecked, setSubtaskChecked] = useState(subTasks.map(() => false));
-  const[subtaskModal, setSubtaskModal] = useState(false);
+  const [subtaskModal, setSubtaskModal] = useState(false);
 
   const addSubtasks = (newTasks) => {
     setSubTasks([...subTasks, ...newTasks]);
@@ -76,7 +73,6 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
               <div className="checkbox-container">
                 <button className={`mark-completed-checkbox ${subtaskChecked[index] ? 'mark-completed-checked' : ''}`} onClick={() => {
                   toggleSubtaskCheckBox(index)
-                  console.log(`Subtask ${index} clicked`)
                 }}
                 >{subtaskChecked[index]?<img src='/assets/check-mark.png'/>:null}</button>
               </div>
@@ -85,6 +81,15 @@ const TaskElement = ({ key, taskDescription, onDelete, onEdit, priority, subtask
           ))}
 
         </div>
+        {
+          taskDescription.taskTime ? (
+            <div className='task-time-container'>
+              <div>Status: </div>
+              <span></span>
+              <TaskTime taskTime={taskDescription.taskTime}></TaskTime>
+            </div>
+          ):null
+        }
 
     </div>
   )

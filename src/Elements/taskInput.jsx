@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import './taskInput.css';
 import { taskDescription } from '../Structures/taskDescription';
+import taskTime from '../Structures/taskTime/taskTime.js';
+
+const formatDateTime = (date) => {
+  if (!date) return '';
+  const d = new Date(date);
+  const pad = (num) => num.toString().padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
 
 function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo }) {
   const [selectedValue, setSelectedValue] = useState(taskDesc?taskDesc.taskPriority:'0'); 
-  const [startTime, setStartTime] = useState(taskDesc?taskDesc.taskStart:'');
-  const [endTime, setEndTime] = useState(taskDesc?taskDesc.taskEnd:'');
+  const [startTime, setStartTime] = useState(taskDesc?(taskDesc.taskTime?formatDateTime(taskDesc.taskTime.startTime):''):'');
+  const [endTime, setEndTime] = useState(taskDesc?(taskDesc.taskTime?formatDateTime(taskDesc.taskTime.endTime):''):'');
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -23,13 +31,15 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
       showInfo("Please enter a task title");
       return;
     }
+    let timeTask = null
+    if(startTime != '' && endTime != '') 
+      timeTask = new taskTime(startTime, endTime, false);
     
     setInputValue("");
-    console.log([inputValue, selectedValue]);
     if(!taskDesc){
-      addTask(new taskDescription(inputValue, selectedValue, startTime, endTime, []));
+      addTask(new taskDescription(inputValue, selectedValue, timeTask, []));
     } else {
-      editTask(new taskDescription(inputValue, selectedValue, startTime, endTime, taskDesc.subtasks));
+      editTask(new taskDescription(inputValue, selectedValue, timeTask, taskDesc.subtasks));
     }
   }
 
