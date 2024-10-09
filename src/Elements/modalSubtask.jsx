@@ -21,11 +21,13 @@ function ModalSubtask({toggleModal, addSubtask, showInfo}) {
         const validSubtasks = subtasks.filter(subtask => subtask);
         if (validSubtasks.length > 0) {
             addSubtask(validSubtasks);
-        } else {
-            showInfo("Please enter a subtask");
         }
         toggleModal();
         
+        if(!inputFields[0].value) {
+            showInfo("Please enter a SubTask title");
+            return;
+          }
         
     }
 

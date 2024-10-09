@@ -17,7 +17,7 @@ function TaskDisplay({ tasks, editTask,showInfo}) {
         onDelete={() => console.log("Deleted")} 
         onEdit={(tsk) => editTask(tsk, i)} 
         priority={priorityEnum[task.taskPriority]}
-        
+        showInfo={showInfo}
       />
     )
   }
