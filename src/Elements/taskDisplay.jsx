@@ -3,7 +3,7 @@ import TaskElement from "./taskElement";
 
 
 
-function TaskDisplay({ tasks, editTask,showInfo}) {
+function TaskDisplay({ tasks, editTask, showInfo}) {
 
   let separatedTasks = [[], [], []];
   
