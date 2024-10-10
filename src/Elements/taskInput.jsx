@@ -33,9 +33,15 @@ function TaskInput({ isOpen, toggleModal, taskDesc, addTask, editTask, showInfo 
       return;
     }
     let timeTask = null
-    if(startTime != '' && endTime != '') 
+    if(startTime != '' && endTime != '') {
+      const timeStart = new Date(startTime);
+      const timeEnd = new Date(endTime);
+      if(timeStart > timeEnd) {
+        showInfo("Uh, Oh! The task should start before it ends.");
+        return;
+      }
       timeTask = new taskTime(startTime, endTime, false);
-    
+    }
     setInputValue("");
     if(!taskDesc){
       addTask(new taskDescription(inputValue, selectedValue, timeTask, []));

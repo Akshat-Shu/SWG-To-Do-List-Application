@@ -3,7 +3,7 @@ import TaskElement from "./taskElement";
 
 
 
-function TaskDisplay({ tasks, editTask, showInfo}) {
+function TaskDisplay({ tasks, editTask, showInfo, filter}) {
 
   let separatedTasks = [[], [], []];
   
@@ -21,7 +21,12 @@ function TaskDisplay({ tasks, editTask, showInfo}) {
       />
     )
   }
-  const flattenedTasks = separatedTasks[0].concat(separatedTasks[1]).concat(separatedTasks[2])
+  const flattenedTasks = []
+  for (let i = 0; i < 3; i++) {
+    if (filter[i]) {
+      flattenedTasks.push(separatedTasks[i])
+    }
+  }
   return (
     <div>
       {flattenedTasks}

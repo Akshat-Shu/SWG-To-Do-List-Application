@@ -21,11 +21,17 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
   const removes = (index) => {
     const updatedSubTasks = subTasks.filter((i) => i !== index);
     setSubTasks(updatedSubTasks);
+    taskDescription.subtasks = updatedSubTasks;
+    onEdit(taskDescription);
   };
   
 
   function toggleCheckBox() {
     setIsChecked(prevState => !prevState);
+    if(taskDescription.taskTime) {
+      taskDescription.taskTime.completed = !isChecked;
+      onEdit(taskDescription);
+    }
     for (let i = 0; i < subtaskChecked.length; i++) {
       setSubtaskChecked(prevState => {
         const newState = [...prevState];
@@ -53,12 +59,14 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
   const handleEdit = () =>{
     setIsEditModalOpen(!isEditModalOpen);
   }
+
   return (
     <div className={`task-element ${priority}`}>
-      <div className="task-container"></div>
         <div className="first-line-wrapper">
           <div className="task-content">
-            <button className="add-subtasks" onClick={handlesubtaskModal}>+</button>
+            <button className="add-subtasks" onClick={handlesubtaskModal}>
+              <img src='/assets/add-symbol.png' className='add-subtask-symbol'/>
+            </button>
             { subtaskModal ? <ModalSubtask toggleModal={handlesubtaskModal} addSubtask={addSubtasks} showInfo={showInfo}/> : null}
             <div className="checkbox-container">
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
@@ -69,19 +77,18 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
           <div className="button-group">
             <button className="delete-button" onClick={onDelete}>Delete</button>
             <button className="edit-button" onClick={handleEdit}>Edit</button>
-            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} editTask={onEdit}></TaskInput> : null}
+            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} editTask={onEdit} showInfo={showInfo}></TaskInput> : null}
           </div>
         </div>
         <div className="subtask-container">
           {subTasks && subTasks.map((subtask, index) => (
             <div className="subtask" key={index}>
-              <div className="subtask-1">
-              <img src='/assets/subtask-enter-key.png' className="subtask-enter"/>
-              <div className="checkbox-container">
-                <button className={`mark-completed-checkbox ${subtaskChecked[index] ? 'mark-completed-checked' : ''}`} onClick={() => {
-                  toggleSubtaskCheckBox(index)
-                }}
-                >{subtaskChecked[index]?<img src='/assets/check-mark.png'/>:null}</button>
+              <div className="subtask-front">
+                <img src='/assets/subtask-enter-key.png' className="subtask-enter"/>
+                <div className="checkbox-container">
+                  <button className={`mark-completed-checkbox ${subtaskChecked[index] ? 'mark-completed-checked' : ''}`} onClick={() => toggleSubtaskCheckBox(index)} disabled={isChecked}>
+                    {subtaskChecked[index]?<img src='/assets/check-mark.png'/>:null}
+                  </button>
               </div>
               <div className={`task-name ${subtaskChecked[index]?'dashed-task-name':''}`}>{subTasks[index]}</div>
               </div>

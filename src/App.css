@@ -8,3 +8,24 @@
 /* .click-close {
   background-color: var(--button-color-red);
 } */
+
+.tasks-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.add-symbol {
+  width: 15px;
+}
+
+.add-task-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-task-text {
+  margin: 0px 0px 2px 5px;
+}

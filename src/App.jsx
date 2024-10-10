@@ -45,14 +45,17 @@ function App() {
     setIsModalOpen(!isModalOpen);
   };
   return (
-    // TODO: make the App.jsx page look cleaner, 
-    //TODO: fix modal-content not appearing as specified in taskInput.jsx
     <>
-      <button onClick={toggleModal}>Add Task</button>
+      <div className='tasks-header'>
+        <button onClick={toggleModal} className='add-task-button'>
+          <img src='/assets/add-symbol.png' className='add-symbol'/>
+          <div className='add-task-text'>Add Task</div>
+        </button>
+      </div>
       {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} showInfo={showInfo}></TaskInput> : null}
       <div>
 
-      <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo}></TaskDisplay>
+      <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={[1, 1, 1]}></TaskDisplay>
       <InfoBox
         message={infoMessage}
         isVisible={isInfoVisible}
