@@ -14,6 +14,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1rem;
+
+  width: 100%;
 }
 
 .add-symbol {
@@ -28,4 +30,39 @@
 
 .add-task-text {
   margin: 0px 0px 2px 5px;
+}
+
+.priority-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.priority-filter-text {
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  background-color: #1a1a1a;
+  margin-left: 50px;
+}
+
+.swg-logo {
+  width: 150px;
+  height: 150px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-symbol {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
