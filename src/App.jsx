@@ -4,19 +4,13 @@ import TaskInput from './Elements/taskInput'
 import { useState } from 'react'
 import TaskDisplay from './Elements/taskDisplay'
 import InfoBox from './Elements/informationBox'
+import { getLocalstorage, setLocalstorage } from './Elements/todoStorage'
 
 
 function App() {
-  const [tasks, setTasks] = useState([
-    new taskDescription("Something generic", 1, null, ["Helo world", "Hello world 2"]),
-    new taskDescription(
-      "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out. I also wonder where happens if I go over two lines and go into the thee lines zone",
-      2, null, [
-        "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out 1", 
-        "Just some long string that I want to test for if this works, trying this out may bring out some interesting results. maybe this string gets really long sometimes but I think it works out 2"
-      ]
-    )
-  ])
+
+
+  const [tasks, setTasks] = useState( () => getLocalstorage())
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [infoMessage, setInfoMessage] = useState("");
 
@@ -65,7 +59,8 @@ function App() {
     return [selectedPriorities.includes("high"), selectedPriorities.includes("mid"), selectedPriorities.includes("low")];
   }
 
-
+  console.log(tasks);
+  setLocalstorage(tasks)
   return (
     <>
       <div className='header'>
