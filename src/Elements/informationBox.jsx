@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './informationBox.css';
+import './Styles/informationBox.css';
 
 function InfoBox({ message, isVisible, onClose }) {
   const [visibleClass, setVisibleClass] = useState('');

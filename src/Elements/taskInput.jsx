@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './taskInput.css';
+import './Styles/taskInput.css';
 import { taskDescription } from '../Structures/taskDescription';
 import taskTime from '../Structures/taskTime/taskTime.js';
 

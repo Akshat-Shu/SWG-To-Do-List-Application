@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import  './modalSubtask.css';
+import  './Styles/modalSubtask.css';
 
 function ModalSubtask({toggleModal, addSubtask, showInfo}) {
     const[inputFields, setInputFields] = useState([{id:1}])

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './taskElement.css';
+import './Styles/taskElement.css';
 import TaskInput from './taskInput'
 import ModalSubtask from './modalSubtask';
 import TaskTime from '../Structures/taskTime/taskTime.jsx';
