@@ -1,0 +1,14 @@
+.task-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tasks {
+    flex: 1;
+    margin: 10px;
+    background-color: var(--secondary-background);
+    width: auto;
+    height: auto;
+    padding-right: 40px;
+}

@@ -77,8 +77,12 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
             <div className={`task-name ${isChecked?'dashed-task-name':''}`}>{taskDescription.taskName}</div>
           </div>
           <div className="button-group">
-            <button className="delete-button" onClick={onDelete}>Delete</button>
-            <button className="edit-button" onClick={handleEdit}>Edit</button>
+            <button className="delete-button" onClick={onDelete}>
+              <img src='/assets/bin.png' className='task-img'></img>
+            </button>
+            <button className="edit-button" onClick={handleEdit}>
+              <img src='/assets/editing.png' className='task-img'></img>
+            </button>
             {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} editTask={onEdit} showInfo={showInfo}></TaskInput> : null}
           </div>
         </div>

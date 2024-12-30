@@ -46,7 +46,7 @@
 
 .task-content {
   display: flex;
-  align-items: center;
+  align-items: first baseline;
   flex-grow: 1;
 }
 
@@ -85,7 +85,7 @@
 
 .first-line-wrapper{
   display: flex;
-  align-items: center;
+  align-items: first baseline;
   justify-content: space-between;
 }
 
@@ -106,6 +106,8 @@
   border: none;
   padding: 5px 10px;
   border-radius: 3px;
+  width: fit-content;
+  height: fit-content;
   cursor: pointer;
 }
 
@@ -133,6 +135,8 @@
   color: white;
   border: none;
   padding: 5px 10px;
+  width: fit-content;
+  height: fit-content;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -148,4 +152,8 @@
 .remove-btn{
   background-color: rgba(0, 0, 0, 0);
   border-radius: 10px;
+}
+
+.task-img {
+  width: 15px;
 }

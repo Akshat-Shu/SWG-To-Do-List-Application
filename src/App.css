@@ -66,3 +66,66 @@
   margin-right: 5px;
   margin-top: 5px;
 }
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--button-color-green);
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  right: 4px;
+  top: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--button-color-purple)
+}
+
+input:checked + .slider:before {
+  transform: translateX(15px);
+}
+
+.toggle-view {
+  display: flex;
+  align-items: center;
+}
+
+.p-view {
+  color: var(--button-color-purple);
+  margin: 10px;
+}
+
+.n-view {
+  color: var(--button-color-green);
+  margin: 10px;
+}

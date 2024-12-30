@@ -11,6 +11,8 @@ function Home() {
   const [tasks, setTasks] = useState( () => getLocalstorage())
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [infoMessage, setInfoMessage] = useState("");
+  const [isPriorityView, setIsPriorityView] = useState(false);
+
   const showInfo = (message) => {
     setInfoMessage(message)
     setIsInfoVisible(true);
@@ -56,6 +58,11 @@ function Home() {
     return [selectedPriorities.includes("high"), selectedPriorities.includes("mid"), selectedPriorities.includes("low")];
   }
 
+  const toggleView = () => {
+    setIsPriorityView(!isPriorityView);
+  };
+
+
   console.log(tasks);
   setLocalstorage(tasks)
   return (
@@ -69,6 +76,15 @@ function Home() {
           <img src='/assets/add-symbol.png' className='add-symbol'/>
           <div className='add-task-text'>Add Task</div>
         </button>
+
+        <div className='toggle-view'>
+          <div className='n-view'>Normal View</div>
+          <label className="toggle-switch">
+            <input type="checkbox" checked={isPriorityView} onChange={toggleView} />
+            <span className="slider"></span>
+          </label>
+          <div className='p-view'>Priority View</div>
+        </div>
 
         <div className='priority-filter'>
           <div className='priority-filter-text'>
@@ -108,7 +124,7 @@ function Home() {
       {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} showInfo={showInfo}></TaskInput> : null}
       <div>
 
-      <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={getFilter(selectedPriorities)} deleteTask={deleteTask}></TaskDisplay>
+      <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={getFilter(selectedPriorities)} deleteTask={deleteTask} view={isPriorityView} ></TaskDisplay>
       <InfoBox
         message={infoMessage}
         isVisible={isInfoVisible}
