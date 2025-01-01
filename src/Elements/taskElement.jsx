@@ -3,9 +3,9 @@ import './Styles/taskElement.css';
 import TaskInput from './taskInput'
 import ModalSubtask from './modalSubtask';
 import TaskTime from '../Structures/taskTime/taskTime.jsx';
+import { useDrag, useDrop } from 'react-dnd';
 
-
-const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, showInfo }) => {
+const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, showInfo, index }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [subTasks, setSubTasks] = useState(subtasks);
@@ -62,8 +62,18 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
     setIsEditModalOpen(!isEditModalOpen);
   }
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: 'TASK',
+    item: { index },
+    collect: (monitor) => {
+      return {
+        isDragging: monitor.isDragging(),
+      };
+    },
+  }));
+
   return (
-    <div className={`task-element ${priority}`}>
+    <div className={`task-element ${priority}`} style={{opacity: isDragging ? "0.2" : "1"}} ref={drag}>
         <div className="first-line-wrapper">
           <div className="task-content">
             <button className="add-subtasks" onClick={handlesubtaskModal}>

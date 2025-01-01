@@ -1,7 +1,7 @@
 import { priorityEnum } from "../Structures/taskDescription";
 import TaskElement from "./taskElement";
 import './Styles/taskDisplay.css'
-
+import DroppableContainer from "./DroppableColumn";
 
 
 function TaskDisplay({ tasks, editTask, showInfo, filter, deleteTask, view}) {
@@ -19,6 +19,7 @@ function TaskDisplay({ tasks, editTask, showInfo, filter, deleteTask, view}) {
         onEdit={(tsk) => editTask(tsk, i)} 
         priority={priorityEnum[task.taskPriority]}
         showInfo={showInfo}
+        index={i}
       />
     )
   }
@@ -30,12 +31,19 @@ function TaskDisplay({ tasks, editTask, showInfo, filter, deleteTask, view}) {
   }
 
   let res = []
-  res.push(<div className="tasks">{separatedTasks[0]}</div>)
-  res.push(<div className="tasks">{separatedTasks[1]}</div>)
-  res.push(<div className="tasks">{separatedTasks[2]}</div>)
+  res.push(<DroppableContainer tasks={separatedTasks[0]} key={"high"}/>)
+  res.push(<DroppableContainer tasks={separatedTasks[1]} key={"intermediate"}/>)
+  res.push(<DroppableContainer tasks={separatedTasks[2]} key={"low"}/>)
+  if(view) {
     return (
-    <div className={ view ? "task-display" : "" }>
-      { view ? res : flattenedTasks }
+      <div className="task-display">
+        {res}
+      </div>
+    )
+  }
+  return (
+    <div>
+      {flattenedTasks}
     </div>
   )
 }

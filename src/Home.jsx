@@ -4,6 +4,8 @@ import TaskDisplay from './Elements/taskDisplay'
 import InfoBox from './Elements/informationBox'
 import { getLocalstorage, setLocalstorage } from './Elements/todoStorage'
 import { fetchTasks, createTask, deleteTask } from './services/api';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function Home() {
 
@@ -124,7 +126,9 @@ function Home() {
       {isModalOpen ? <TaskInput isModalOpen={isModalOpen} toggleModal={toggleModal} addTask={addTask} showInfo={showInfo}></TaskInput> : null}
       <div>
 
-      <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={getFilter(selectedPriorities)} deleteTask={deleteTask} view={isPriorityView} ></TaskDisplay>
+      <DndProvider backend={HTML5Backend}>
+        <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={getFilter(selectedPriorities)} deleteTask={deleteTask} view={isPriorityView} ></TaskDisplay>
+      </DndProvider>
       <InfoBox
         message={infoMessage}
         isVisible={isInfoVisible}

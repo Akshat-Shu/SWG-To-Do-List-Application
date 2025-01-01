@@ -4,6 +4,9 @@ import { Home } from './Home'
 import PrivateRoute from './privateRoutes';
 import Login from './component/login';
 import Signup from './component/signup';
+import { DndProvider } from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
+
 
 function App() {
 
@@ -17,7 +20,9 @@ function App() {
           path="/home"
           element={
             <PrivateRoute>
-              <Home />
+              <DndProvider backend={HTML5Backend}>
+                <Home />
+              </DndProvider>
             </PrivateRoute>
           }
         />
