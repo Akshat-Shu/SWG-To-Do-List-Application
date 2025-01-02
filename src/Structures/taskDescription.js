@@ -11,6 +11,7 @@ const priorityEnum = Object.freeze({
   2: 'priority-low',
 })
 
+
 class taskDescription {
   constructor(taskName, taskPriority, taskTime, subtasks) {
     this.taskName = taskName;
@@ -21,4 +22,4 @@ class taskDescription {
 }
 
 
-export { taskDescription, priorityEnum }
+export { taskDescription, priorityEnum, taskPrioties }

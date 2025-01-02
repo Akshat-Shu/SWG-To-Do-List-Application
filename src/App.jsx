@@ -20,9 +20,7 @@ function App() {
           path="/home"
           element={
             <PrivateRoute>
-              <DndProvider backend={HTML5Backend}>
-                <Home />
-              </DndProvider>
+              <Home />
             </PrivateRoute>
           }
         />

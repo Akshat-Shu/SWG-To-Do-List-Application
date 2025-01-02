@@ -1,11 +1,11 @@
 import { useDrop } from "react-dnd";
 
-const DroppableContainer = ({ tasks, key }) => {
+const DroppableContainer = ({ tasks, type }) => {
 
   const [{ canDrop, isOver }, dropref] = useDrop({
     accept: 'TASK',
     drop: () => ({
-      "hello": "world",
+      name: type,
     }),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -14,7 +14,7 @@ const DroppableContainer = ({ tasks, key }) => {
   });
 
   return (
-    <div ref={dropref} className="tasks" key={key}>
+    <div ref={dropref} className="tasks" key={type}>
       {isOver && canDrop && <hr style={{height: "5px", borderRadius: "10px", backgroundColor: "var(--color-light-purple)"}}></hr>}
       {tasks}
     </div>

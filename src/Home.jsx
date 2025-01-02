@@ -10,7 +10,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 function Home() {
 
 
-  const [tasks, setTasks] = useState( () => getLocalstorage())
+  const [tasks, setTasks] = useState(() => getLocalstorage());
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [infoMessage, setInfoMessage] = useState("");
   const [isPriorityView, setIsPriorityView] = useState(false);
@@ -127,7 +127,7 @@ function Home() {
       <div>
 
       <DndProvider backend={HTML5Backend}>
-        <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={getFilter(selectedPriorities)} deleteTask={deleteTask} view={isPriorityView} ></TaskDisplay>
+        <TaskDisplay tasks={tasks} editTask={editTask} showInfo={showInfo} filter={getFilter(selectedPriorities)} deleteTask={deleteTask} view={isPriorityView} />
       </DndProvider>
       <InfoBox
         message={infoMessage}

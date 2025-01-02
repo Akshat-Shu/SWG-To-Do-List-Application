@@ -4,8 +4,9 @@ import TaskInput from './taskInput'
 import ModalSubtask from './modalSubtask';
 import TaskTime from '../Structures/taskTime/taskTime.jsx';
 import { useDrag, useDrop } from 'react-dnd';
+import { taskPrioties, taskDescription } from '../Structures/taskDescription';
 
-const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, showInfo, index }) => {
+const TaskElement = ({ taskDesc, onDelete, onEdit, priority, subtasks, showInfo, index }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [subTasks, setSubTasks] = useState(subtasks);
@@ -16,23 +17,23 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
     setSubTasks([...subTasks, ...newTasks]);
     setSubtaskChecked([...subtaskChecked, ...newTasks.map(() => isChecked)]);
     console.log(subTasks);
-    taskDescription.subtasks = subTasks;
+    taskDesc.subtasks = subTasks;
     console.log(subTasks);
-    onEdit(taskDescription);
+    onEdit(taskDesc);
   }
   const removes = (index) => {
     const updatedSubTasks = subTasks.filter((i) => i !== index);
     setSubTasks(updatedSubTasks);
-    taskDescription.subtasks = updatedSubTasks;
-    onEdit(taskDescription);
+    taskDesc.subtasks = updatedSubTasks;
+    onEdit(taskDesc);
   };
   
 
   function toggleCheckBox() {
     setIsChecked(prevState => !prevState);
-    if(taskDescription.taskTime) {
-      taskDescription.taskTime.completed = !isChecked;
-      onEdit(taskDescription);
+    if(taskDesc.taskTime) {
+      taskDesc.taskTime.completed = !isChecked;
+      onEdit(taskDesc);
     }
     for (let i = 0; i < subtaskChecked.length; i++) {
       setSubtaskChecked(prevState => {
@@ -65,6 +66,12 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'TASK',
     item: { index },
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult();
+      if (item && dropResult) {
+        onEdit(new taskDescription(taskDesc.taskName, taskPrioties[dropResult.name], taskDesc.taskTime, subTasks));
+      }
+    },
     collect: (monitor) => {
       return {
         isDragging: monitor.isDragging(),
@@ -84,7 +91,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
               <button className={`mark-completed-checkbox ${isChecked ? 'mark-completed-checked' : ''}`} onClick={toggleCheckBox}
               >{isChecked?<img src='/assets/check-mark.png'/>:null}</button>
             </div>
-            <div className={`task-name ${isChecked?'dashed-task-name':''}`}>{taskDescription.taskName}</div>
+            <div className={`task-name ${isChecked?'dashed-task-name':''}`}>{taskDesc.taskName}</div>
           </div>
           <div className="button-group">
             <button className="delete-button" onClick={onDelete}>
@@ -93,7 +100,7 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
             <button className="edit-button" onClick={handleEdit}>
               <img src='/assets/editing.png' className='task-img'></img>
             </button>
-            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDescription} editTask={onEdit} showInfo={showInfo}></TaskInput> : null}
+            {isEditModalOpen ? <TaskInput isModalOpen={isEditModalOpen} toggleModal={handleEdit} taskDesc={taskDesc} editTask={onEdit} showInfo={showInfo} /> : null}
           </div>
         </div>
         <div className="subtask-container">
@@ -117,11 +124,11 @@ const TaskElement = ({ taskDescription, onDelete, onEdit, priority, subtasks, sh
 
         </div>
         {
-          taskDescription.taskTime ? (
+          taskDesc.taskTime ? (
             <div className='task-time-container'>
               <div>Status: </div>
               
-              <TaskTime taskTime={taskDescription.taskTime}></TaskTime>
+              <TaskTime taskTime={taskDesc.taskTime}></TaskTime>
             </div>
           ):null
         }

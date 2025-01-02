@@ -9,11 +9,11 @@ function TaskDisplay({ tasks, editTask, showInfo, filter, deleteTask, view}) {
   let separatedTasks = [[], [], []];
   
   for (let i = 0; i < tasks.length; i++) {
-    let task = tasks[i]
-    separatedTasks[task.taskPriority].push(
+    let task = tasks[i];
+    separatedTasks[parseInt(task.taskPriority)].push(
       <TaskElement 
         key={i}
-        taskDescription={task} 
+        taskDesc={task} 
         subtasks={task.subtasks}
         onDelete={() => deleteTask(i)} 
         onEdit={(tsk) => editTask(tsk, i)} 
@@ -31,9 +31,9 @@ function TaskDisplay({ tasks, editTask, showInfo, filter, deleteTask, view}) {
   }
 
   let res = []
-  res.push(<DroppableContainer tasks={separatedTasks[0]} key={"high"}/>)
-  res.push(<DroppableContainer tasks={separatedTasks[1]} key={"intermediate"}/>)
-  res.push(<DroppableContainer tasks={separatedTasks[2]} key={"low"}/>)
+  res.push(<DroppableContainer tasks={separatedTasks[0]} type={"High Priority"}/>)
+  res.push(<DroppableContainer tasks={separatedTasks[1]} type={"Intermediate Priority"}/>)
+  res.push(<DroppableContainer tasks={separatedTasks[2]} type={"Low Priority"}/>)
   if(view) {
     return (
       <div className="task-display">
